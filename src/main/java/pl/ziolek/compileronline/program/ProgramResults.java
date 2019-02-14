@@ -14,4 +14,9 @@ public class ProgramResults {
         this.testResults = new ArrayList<>();
         this.testStatus = new ArrayList<>();
     }
+
+    public void addTestResults(String testResult, String testStatus) {
+        this.testResults.add(testResult);
+        this.testStatus.add(testStatus);
+    }
 }
