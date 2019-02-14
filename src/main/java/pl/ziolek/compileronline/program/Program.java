@@ -13,4 +13,16 @@ public class Program {
         this.code = code;
         this.tests = tests;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public List<String> getTests() {
+        return tests;
+    }
 }
