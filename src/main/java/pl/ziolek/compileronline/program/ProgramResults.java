@@ -7,7 +7,7 @@ public class ProgramResults {
 
     private int id;
     private List<String> testResults;
-    private List<String> testStatus;
+    private List<ResultStatus> testStatus;
 
     public ProgramResults(int id) {
         this.id = id;
@@ -15,8 +15,8 @@ public class ProgramResults {
         this.testStatus = new ArrayList<>();
     }
 
-    public void addTestResults(String testResult, String testStatus) {
+    public void addTestResults(String testResult, ResultStatus resultStatus) {
         this.testResults.add(testResult);
-        this.testStatus.add(testStatus);
+        this.testStatus.add(resultStatus);
     }
 }
