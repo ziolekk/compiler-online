@@ -6,6 +6,7 @@ import pl.ziolek.compileronline.program.ProgramResults;
 public class CppCompiler implements Compiler {
 
     private CppCompiler instance = new CppCompiler();
+    private final String pathToFile = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
 
     private CppCompiler() {}
 
