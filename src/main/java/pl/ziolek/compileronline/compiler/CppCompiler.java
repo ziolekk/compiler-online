@@ -44,4 +44,10 @@ public class CppCompiler implements Compiler {
             System.out.println("CppCompiler: createFile() error");
         }
     }
+
+    private void saveCodeToFile(String code) throws IOException {
+        BufferedWriter writter = new BufferedWriter(new FileWriter(this.pathToFile + this.fileName));
+        writter.write(code);
+        writter.close();
+    }
 }
