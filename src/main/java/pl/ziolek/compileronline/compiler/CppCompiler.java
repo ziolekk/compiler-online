@@ -23,7 +23,14 @@ public class CppCompiler implements Compiler {
         return instance;
     }
 
-    private void createFile() {
+    private void createFile() throws IOException {
+        String absoluteFilePath = this.pathToFile + "code.cpp";
+        File file = new File(absoluteFilePath);
 
+        if (file.createNewFile()) {
+            System.out.println("CppCompiler: createFile() ok");
+        } else {
+            System.out.println("CppCompiler: createFile() error");
+        }
     }
 }
