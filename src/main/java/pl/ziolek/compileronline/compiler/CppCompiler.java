@@ -16,6 +16,14 @@ public class CppCompiler implements Compiler {
     @Override
     public ProgramResults compile(Program program) {
 
+        try {
+            createFile();
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+        }
+
         return null;
     }
 
