@@ -11,10 +11,15 @@ public class CppCompiler implements Compiler {
 
     @Override
     public ProgramResults compile(Program program) {
+
         return null;
     }
 
     public CppCompiler getInstance() {
         return instance;
+    }
+
+    private void createFile() {
+
     }
 }
