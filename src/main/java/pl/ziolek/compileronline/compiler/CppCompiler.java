@@ -12,6 +12,7 @@ public class CppCompiler implements Compiler {
 
     private CppCompiler instance = new CppCompiler();
     private final String pathToFile = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
+    private final String fileName = "code.cpp";
 
     private CppCompiler() {}
 
@@ -34,7 +35,7 @@ public class CppCompiler implements Compiler {
     }
 
     private void createFile() throws IOException {
-        String absoluteFilePath = this.pathToFile + "code.cpp";
+        String absoluteFilePath = this.pathToFile + this.fileName;
         File file = new File(absoluteFilePath);
 
         if (file.createNewFile()) {
