@@ -46,8 +46,8 @@ public class CppCompiler implements Compiler {
     }
 
     private void saveCodeToFile(String code) throws IOException {
-        BufferedWriter writter = new BufferedWriter(new FileWriter(this.pathToFile + this.fileName));
-        writter.write(code);
-        writter.close();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(this.pathToFile + this.fileName));
+        writer.write(code);
+        writer.close();
     }
 }
