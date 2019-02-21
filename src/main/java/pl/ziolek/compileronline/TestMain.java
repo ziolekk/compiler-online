@@ -7,10 +7,12 @@ import java.util.ArrayList;
 
 public class TestMain {
 
-    private CppCompiler cppCompiler;
-
     public static void main(String[] args) {
-        cppCompiler = CppCompiler.getInstance();
+        CppCompiler cppCompiler = CppCompiler.getInstance();
+        Program program = new TestMain().getProgram();
+
+
+        cppCompiler.compile(program);
     }
 
     private Program getProgram() {
