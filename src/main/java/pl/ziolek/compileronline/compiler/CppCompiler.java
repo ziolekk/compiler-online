@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class CppCompiler implements Compiler {
 
-    private CppCompiler instance = new CppCompiler();
+    private static CppCompiler instance = new CppCompiler();
     private final String pathToFile = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String fileName = "code.cpp";
 
@@ -30,7 +30,7 @@ public class CppCompiler implements Compiler {
         return null;
     }
 
-    public CppCompiler getInstance() {
+    public static CppCompiler getInstance() {
         return instance;
     }
 
