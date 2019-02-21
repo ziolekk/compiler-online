@@ -15,7 +15,7 @@ public class TestMain {
         cppCompiler.compile(program);
     }
 
-    private Program getProgram() {
+    public Program getProgram() {
         return new Program(
                 1,
                 "#include <iostream>" +
