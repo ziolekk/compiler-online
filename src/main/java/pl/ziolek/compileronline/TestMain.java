@@ -18,12 +18,12 @@ public class TestMain {
     public Program getProgram() {
         return new Program(
                 1,
-                "#include <iostream>" +
-                        "using namespace std;" +
-                        "" +
-                        "int main() {" +
-                        "   cout << \"Hello World\";" +
-                        "}",
+                "#include <iostream>\n" +
+                        "using namespace std;\n" +
+                        "\n" +
+                        "int main() {\n" +
+                        "   cout << \"Hello World\";\n" +
+                        "}\n",
                 new ArrayList<>()
         );
     }
