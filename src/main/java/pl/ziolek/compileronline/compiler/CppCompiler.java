@@ -52,6 +52,9 @@ public class CppCompiler implements Compiler {
 
     private boolean compileProgram() throws IOException, InterruptedException {
         StringBuffer output = new StringBuffer();
+        System.out.println("Execute command: " + this.compileCommand1 + this.pathToFile + this.fileName
+                + this.compileCommand2 + this.pathToFile + this.compileFileName
+        );
         Process process = Runtime.getRuntime().exec(
                 this.compileCommand1 + this.pathToFile + this.fileName
                 + this.compileCommand2 + this.pathToFile + this.compileFileName
