@@ -23,6 +23,8 @@ public class CppCompiler implements Compiler {
         try {
             createFile();
             saveCodeToFile(program.getCode());
+
+            cleanUp();
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
