@@ -13,7 +13,7 @@ public class CppCompiler implements Compiler {
     private static CppCompiler instance = new CppCompiler();
     private final String pathToFile = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String fileName = "code.cpp";
-    private final String cleanUpCommand = "rm code.cpp";
+    private final String cleanUpCommand = "rm ";
 
     private CppCompiler() {}
 
