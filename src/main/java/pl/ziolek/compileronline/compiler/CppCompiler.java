@@ -62,7 +62,7 @@ public class CppCompiler implements Compiler {
         while ((line = reader.readLine()) != null)
             output.append(line);
 
-        if (output.toString() == "")
+        if (output.toString().equals(""))
             return true;
         return false;
     }
