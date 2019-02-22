@@ -13,6 +13,7 @@ public class CppCompiler implements Compiler {
     private static CppCompiler instance = new CppCompiler();
     private final String pathToFile = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String fileName = "code.cpp";
+    private final String cleanUpCommand = "rm ";
 
     private CppCompiler() {}
 
@@ -22,6 +23,8 @@ public class CppCompiler implements Compiler {
         try {
             createFile();
             saveCodeToFile(program.getCode());
+
+            cleanUp();
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
@@ -49,5 +52,10 @@ public class CppCompiler implements Compiler {
         BufferedWriter writer = new BufferedWriter(new FileWriter(this.pathToFile + this.fileName));
         writer.write(code);
         writer.close();
+    }
+
+    private void cleanUp() throws IOException {
+        System.out.println("Exec command: " + this.cleanUpCommand + this.pathToFile + this.fileName);
+        Runtime.getRuntime().exec(this.cleanUpCommand + this.pathToFile + this.fileName);
     }
 }
