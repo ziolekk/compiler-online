@@ -20,11 +20,12 @@ public class CppCompiler implements Compiler {
 
     @Override
     public ProgramResults compile(Program program) {
+        programResults = new ProgramResults(program.getId());
 
         try {
             createFile();
             saveCodeToFile(program.getCode());
-
+            programResults.setGoodCompilation(compileProgram());
             cleanUp();
         } catch (Exception e) {
 
