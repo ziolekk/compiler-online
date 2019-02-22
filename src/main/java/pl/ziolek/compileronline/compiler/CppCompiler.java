@@ -73,8 +73,9 @@ public class CppCompiler implements Compiler {
         writer.close();
     }
 
-    private void cleanUp() throws IOException {
+    private void cleanUp() throws IOException, InterruptedException {
         System.out.println("Exec command: " + this.cleanUpCommand + this.pathToFile + this.fileName);
-        Runtime.getRuntime().exec(this.cleanUpCommand + this.pathToFile + this.fileName);
+        Process process = Runtime.getRuntime().exec(this.cleanUpCommand + this.pathToFile + this.fileName);
+        process.waitFor();
     }
 }
