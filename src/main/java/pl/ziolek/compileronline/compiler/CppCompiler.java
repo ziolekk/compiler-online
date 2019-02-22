@@ -48,6 +48,23 @@ public class CppCompiler implements Compiler {
         }
     }
 
+    private boolean compileProgram() throws IOException, InterruptedException {
+        StringBuffer output = new StringBuffer();
+        Process process = Runtime.getRuntime().exec(
+                this.compileCommand1 + this.pathToFile + this.fileName
+                + this.compileCommand2 + this.pathToFile + this.compileFileName
+        );
+        process.waitFor();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        while ((line = reader.readLine()) != null)
+            output.append(line);
+
+        if (line == "")
+            return true;
+        return false;
+    }
+
     private void saveCodeToFile(String code) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(this.pathToFile + this.fileName));
         writer.write(code);
