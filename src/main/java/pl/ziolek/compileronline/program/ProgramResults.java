@@ -6,6 +6,7 @@ import java.util.List;
 public class ProgramResults {
 
     private int id;
+    private boolean isGoodCompilation;
     private List<String> testResults;
     private List<ResultStatus> testStatus;
 
@@ -13,6 +14,10 @@ public class ProgramResults {
         this.id = id;
         this.testResults = new ArrayList<>();
         this.testStatus = new ArrayList<>();
+    }
+
+    public void setGoodCompilation(boolean isGoodCompilation) {
+        this.isGoodCompilation = isGoodCompilation;
     }
 
     public void addTestResults(String testResult, ResultStatus resultStatus) {
