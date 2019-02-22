@@ -12,8 +12,11 @@ public class CppCompiler implements Compiler {
 
     private static CppCompiler instance = new CppCompiler();
     private final String pathToFile = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
-    private final String fileName = "code.cpp";
+    private final String fileName = "code.cpp ";
+    private final String compileFileName = "program ";
     private final String cleanUpCommand = "rm ";
+    private final String compileCommand1 = "g++ ";
+    private final String compileCommand2 = "-o ";
 
     private CppCompiler() {}
 
