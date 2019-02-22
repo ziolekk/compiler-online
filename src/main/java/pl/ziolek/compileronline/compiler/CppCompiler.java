@@ -3,10 +3,7 @@ package pl.ziolek.compileronline.compiler;
 import pl.ziolek.compileronline.program.Program;
 import pl.ziolek.compileronline.program.ProgramResults;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class CppCompiler implements Compiler {
 
