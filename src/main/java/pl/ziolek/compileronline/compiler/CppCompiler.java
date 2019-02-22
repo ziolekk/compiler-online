@@ -51,4 +51,8 @@ public class CppCompiler implements Compiler {
         writer.write(code);
         writer.close();
     }
+
+    private void cleanUp() throws IOException {
+        Process process = Runtime.getRuntime().exec(this.pathToFile + this.cleanUpCommand);
+    }
 }
