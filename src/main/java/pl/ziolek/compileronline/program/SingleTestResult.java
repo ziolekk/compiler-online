@@ -9,4 +9,12 @@ public class SingleTestResult {
         this.result = result;
         this.resultStatus = resultStatus;
     }
+
+    public String getResult() {
+        return result;
+    }
+
+    public ResultStatus getResultStatus() {
+        return resultStatus;
+    }
 }
