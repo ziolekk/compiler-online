@@ -19,7 +19,9 @@ public class CppCompiler implements Compiler {
     private final String compileCommand1 = "g++";
     private final String compileCommand2 = "-o";
 
-    private CppCompiler() {}
+    private CppCompiler() {
+        programExuctor = ProgramExuctor.getInstance();
+    }
 
     @Override
     public ProgramResults compile(Program program) {
