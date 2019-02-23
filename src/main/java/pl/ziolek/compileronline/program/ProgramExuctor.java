@@ -9,4 +9,10 @@ public class ProgramExuctor {
     public static ProgramExuctor getInstance() {
         return instance;
     }
+
+    public SingleTestResult execute(String input) {
+
+
+        return null;
+    }
 }
