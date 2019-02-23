@@ -1,6 +1,7 @@
 package pl.ziolek.compileronline.compiler;
 
 import pl.ziolek.compileronline.program.Program;
+import pl.ziolek.compileronline.program.ProgramExuctor;
 import pl.ziolek.compileronline.program.ProgramResults;
 
 import java.io.*;
@@ -9,6 +10,8 @@ public class CppCompiler implements Compiler {
 
     private static CppCompiler instance = new CppCompiler();
     private ProgramResults programResults;
+    private ProgramExuctor programExuctor;
+
     private final String pathToFile = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String fileName = "code.cpp";
     private final String compileFileName = "program";
