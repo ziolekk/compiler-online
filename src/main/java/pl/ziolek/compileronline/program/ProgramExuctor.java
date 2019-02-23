@@ -22,4 +22,20 @@ public class ProgramExuctor {
 
         return null;
     }
+
+    private void createTestFile() throws IOException {
+        File file = new File(ABSOLUTE_PATH_TO_FILE);
+        file.createNewFile();
+    }
+
+    private void saveToFile(String input) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(ABSOLUTE_PATH_TO_FILE));
+        writer.write(input);
+        writer.close();
+    }
+
+    private void cleanUp() throws IOException, InterruptedException{
+        Process process = Runtime.getRuntime().exec(CLEAN_UP_METHOD);
+        process.waitFor();
+    }
 }
