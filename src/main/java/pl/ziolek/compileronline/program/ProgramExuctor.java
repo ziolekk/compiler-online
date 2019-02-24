@@ -17,7 +17,7 @@ public class ProgramExuctor {
         return instance;
     }
 
-    public SingleTestResult execute(String input) throws IOException, InterruptedException {
+    public SingleTestResult execute(String input, String porgramFilePath) throws IOException, InterruptedException {
 
 
         return null;
