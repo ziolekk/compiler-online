@@ -32,6 +32,7 @@ public class CppCompiler implements Compiler {
             createFile();
             saveCodeToFile(program.getCode());
             programResults.setGoodCompilation(compileProgram());
+            executeSingleTest(program);
             cleanUp();
         } catch (Exception e) {
 
