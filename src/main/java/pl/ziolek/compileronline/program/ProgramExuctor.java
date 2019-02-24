@@ -34,6 +34,29 @@ public class ProgramExuctor {
         writer.close();
     }
 
+    private SingleTestResult getResult(String programFilePath) {
+        StringBuffer output = new StringBuffer();
+
+        try {
+            Process process = Runtime.getRuntime().exec("./" + programFilePath + " < " + ABSOLUTE_PATH_TO_FILE);
+
+//            Sprawdzanie czasu wykonania programu
+//            while z boolean checkRuntime i odliczaniem do x sekund
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null)
+                output.append(line);
+
+        } catch (OutOfMemoryError e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return new SingleTestResult(output.toString(), ResultStatus.OK);
+    }
+
     private void cleanUp() throws IOException, InterruptedException{
         Process process = Runtime.getRuntime().exec(CLEAN_UP_METHOD);
         process.waitFor();
