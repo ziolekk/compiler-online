@@ -17,10 +17,12 @@ public class ProgramExuctor {
         return instance;
     }
 
-    public SingleTestResult execute(String input, String porgramFilePath) throws IOException, InterruptedException {
-
-
-        return null;
+    public SingleTestResult execute(String input, String programFilePath) throws IOException, InterruptedException {
+        createTestFile();
+        saveToFile(input);
+        SingleTestResult singleTestResult = getResult(programFilePath);
+        cleanUp();
+        return singleTestResult;
     }
 
     private void createTestFile() throws IOException {
