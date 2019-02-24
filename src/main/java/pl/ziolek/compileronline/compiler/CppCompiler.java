@@ -3,6 +3,7 @@ package pl.ziolek.compileronline.compiler;
 import pl.ziolek.compileronline.program.Program;
 import pl.ziolek.compileronline.program.ProgramExuctor;
 import pl.ziolek.compileronline.program.ProgramResults;
+import pl.ziolek.compileronline.program.SingleTestResult;
 
 import java.io.*;
 
@@ -79,6 +80,14 @@ public class CppCompiler implements Compiler {
         if (output.toString().equals(""))
             return true;
         return false;
+    }
+
+    private void executeSingleTest(Program program) throws IOException, InterruptedException {
+        SingleTestResult singleTestResult;
+        for (String input : program.getTests()) {
+            singleTestResult = programExuctor.execute(input, pathToFile + compileFileName);
+            programResults.addTestResults(singleTestResult.getResult(), singleTestResult.getResultStatus());
+        }
     }
 
     private void cleanUp() throws IOException, InterruptedException {
