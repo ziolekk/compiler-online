@@ -55,6 +55,12 @@ public class CppCompiler implements Compiler {
         }
     }
 
+    private void saveCodeToFile(String code) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(this.pathToFile + this.fileName));
+        writer.write(code);
+        writer.close();
+    }
+
     private boolean compileProgram() throws IOException, InterruptedException {
         StringBuffer output = new StringBuffer();
         System.out.println("Execute command: " + this.compileCommand1 + " " + this.pathToFile + this.fileName
@@ -73,12 +79,6 @@ public class CppCompiler implements Compiler {
         if (output.toString().equals(""))
             return true;
         return false;
-    }
-
-    private void saveCodeToFile(String code) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(this.pathToFile + this.fileName));
-        writer.write(code);
-        writer.close();
     }
 
     private void cleanUp() throws IOException, InterruptedException {
