@@ -8,7 +8,7 @@ public class ProgramExuctor {
 
     private final String PATH_TO_FOLDER = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String TEST_FILE_NAME = "input.in";
-    private final String EXECUTE_METHOD = "com < " + PATH_TO_FOLDER + TEST_FILE_NAME;
+    private final String EXECUTE_METHOD = "program < " + PATH_TO_FOLDER + TEST_FILE_NAME;
     private final String ABSOLUTE_PATH_TO_FILE = PATH_TO_FOLDER + TEST_FILE_NAME;
     private final String CLEAN_UP_METHOD = "rm " + PATH_TO_FOLDER + TEST_FILE_NAME;
 
