@@ -14,7 +14,7 @@ public class TestMain {
 
 
         ProgramResults results = cppCompiler.compile(program);
-
+        System.out.println(results.toString());
 
     }
 
