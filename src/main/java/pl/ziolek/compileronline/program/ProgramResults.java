@@ -24,4 +24,21 @@ public class ProgramResults {
         this.testResults.add(testResult);
         this.testStatus.add(resultStatus);
     }
+
+    @Override
+    public java.lang.String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("{ \"id\": ");
+        stringBuilder.append(this.id);
+        stringBuilder.append(", \"isGoodCompilation\": ");
+        stringBuilder.append(this.isGoodCompilation);
+        stringBuilder.append(", \"testResults\": [ ");
+        for (String e : testResults)
+            stringBuilder.append(e + ", ");
+        stringBuilder.append("], \"testStatus\": [");
+        for (String e : testResults)
+            stringBuilder.append(e + ", ");
+        stringBuilder.append("]");
+        return stringBuilder.toString();
+    }
 }
