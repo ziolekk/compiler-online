@@ -9,6 +9,7 @@ public class ProgramExuctor {
     private final String PATH_TO_FOLDER = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String TEST_FILE_NAME = "input.in";
     private final String ABSOLUTE_PATH_TO_FILE = PATH_TO_FOLDER + TEST_FILE_NAME;
+    private final String EXECUTE_METHOD = PATH_TO_FOLDER + "runProgram.sh";
     private final String CLEAN_UP_METHOD = "rm " + PATH_TO_FOLDER + TEST_FILE_NAME;
 
     private ProgramExuctor() {}
@@ -40,8 +41,9 @@ public class ProgramExuctor {
         StringBuffer output = new StringBuffer();
 
         try {
-            Process process = Runtime.getRuntime().exec("./" + programFilePath + " < " + ABSOLUTE_PATH_TO_FILE);
-
+            System.out.println(EXECUTE_METHOD);
+            Process process = Runtime.getRuntime().exec(EXECUTE_METHOD);
+            process.waitFor();
 //            Sprawdzanie czasu wykonania programu
 //            while z boolean checkRuntime i odliczaniem do x sekund
 

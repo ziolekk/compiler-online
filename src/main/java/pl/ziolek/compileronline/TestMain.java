@@ -2,6 +2,7 @@ package pl.ziolek.compileronline;
 
 import pl.ziolek.compileronline.compiler.CppCompiler;
 import pl.ziolek.compileronline.program.Program;
+import pl.ziolek.compileronline.program.ProgramResults;
 
 import java.util.ArrayList;
 
@@ -12,10 +13,16 @@ public class TestMain {
         Program program = new TestMain().getProgram();
 
 
-        cppCompiler.compile(program);
+        ProgramResults results = cppCompiler.compile(program);
+
+
     }
 
     public Program getProgram() {
+
+        ArrayList tests = new ArrayList<>();
+        tests.add("69");
+
         return new Program(
                 1,
                 "#include <iostream>\n" +
@@ -23,8 +30,9 @@ public class TestMain {
                         "\n" +
                         "int main() {\n" +
                         "   cout << \"Hello World\";\n" +
+                        "int x; cin >> x; cout << x << endl;" +
                         "}\n",
-                new ArrayList<>()
+                tests
         );
     }
 }
