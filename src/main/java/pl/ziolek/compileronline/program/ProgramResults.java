@@ -36,8 +36,8 @@ public class ProgramResults {
         for (String e : testResults)
             stringBuilder.append(e + ", ");
         stringBuilder.append("], \"testStatus\": [");
-        for (String e : testResults)
-            stringBuilder.append(e + ", ");
+        for (ResultStatus e : testStatus)
+            stringBuilder.append(e + " , ");
         stringBuilder.append("]");
         return stringBuilder.toString();
     }
