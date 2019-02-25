@@ -39,7 +39,7 @@ public class CppCompiler implements Compiler {
             System.out.println(e.getMessage());
         }
 
-        return null;
+        return programResults;
     }
 
     public static CppCompiler getInstance() {
