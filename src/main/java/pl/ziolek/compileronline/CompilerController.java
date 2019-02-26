@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import pl.ziolek.compileronline.compiler.CppCompiler;
 import pl.ziolek.compileronline.program.Program;
 import pl.ziolek.compileronline.program.ProgramResults;
 
 @RestController
 @RequestMapping(value = "/")
 public class CompilerController {
+
+    private CppCompiler cppCompiler = CppCompiler.getInstance();
 
     @RequestMapping(value = "/compile", method = RequestMethod.GET)
     public ResponseEntity<ProgramResults> getResultsFromProgram(@RequestBody Program program) {
