@@ -61,6 +61,41 @@ public class ProgramExuctor {
         return new SingleTestResult(output.toString(), ResultStatus.OK);
     }
 
+    private void checkExecTime(int limitInSeconds) throws TimeoutException {
+        int i = 0;
+        boolean programWorks;
+        do {
+            programWorks = true;
+            try {
+                StringBuffer output = new StringBuffer();
+                Process process = Runtime.getRuntime().exec("ps -x");
+                process.waitFor();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (getProcessName(line).equals(EXECUTE_METHOD))
+                        programWorks = false;
+                }
+
+                if (!programWorks)
+                    return;
+
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                System.out.println("checkExecTime: error = " + e.getMessage());
+            }
+            i++;
+        } while (i < limitInSeconds && programWorks);
+
+        throw new TimeoutException();
+    }
+
+    private String getProcessName(String line) {
+        String[] s = line.split(" ");
+
+        return s[s.length-1];
+    }
+
     private void cleanUp() throws IOException, InterruptedException{
         Process process = Runtime.getRuntime().exec(CLEAN_UP_METHOD);
         process.waitFor();
