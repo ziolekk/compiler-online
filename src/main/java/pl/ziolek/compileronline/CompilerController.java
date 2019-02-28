@@ -17,8 +17,9 @@ public class CompilerController {
     private CppCompiler cppCompiler = CppCompiler.getInstance();
 
     @RequestMapping(value = "/compile", method = RequestMethod.POST)
-    public ResponseEntity<ProgramResults> getResultsFromProgram(@RequestBody Program program) {
-
-        return new ResponseEntity<>(cppCompiler.compile(program), HttpStatus.OK);
+    public ResponseEntity<String> getResultsFromProgram(@RequestBody Program program) {
+        ProgramResults programResults = cppCompiler.compile(program);
+        System.out.println("CompilerController: ProgramResults: " + programResults.toString());
+        return new ResponseEntity<>(programResults.toString(), HttpStatus.OK);
     }
 }
