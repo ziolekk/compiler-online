@@ -44,9 +44,8 @@ public class ProgramExuctor {
         try {
             System.out.println(EXECUTE_METHOD);
             Process process = Runtime.getRuntime().exec(EXECUTE_METHOD);
-            process.waitFor();
-//            Sprawdzanie czasu wykonania programu
-//            while z boolean checkRuntime i odliczaniem do x sekund
+
+            checkExecTime(20);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
