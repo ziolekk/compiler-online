@@ -13,12 +13,11 @@ public class CppCompiler implements Compiler {
     private ProgramResults programResults;
     private ProgramExuctor programExuctor;
 
-    private final String pathToFile = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
-    private final String fileName = "code.cpp";
-    private final String compileFileName = "program";
-    private final String cleanUpCommand = "rm";
-    private final String compileCommand1 = "g++";
-    private final String compileCommand2 = "-o";
+    private final String PATH_TO_FOLDER = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
+    private final String FILE_NAME = "code.cpp";
+    private final String COMPILE_FILE_NAME = "program";
+    private final String CLEANUP_COMMAND = "rm";
+    private final String COMPILE_COMMAND = "g++ " + PATH_TO_FOLDER + FILE_NAME + " -o " + PATH_TO_FOLDER + COMPILE_FILE_NAME;
 
     private CppCompiler() {
         programExuctor = ProgramExuctor.getInstance();
