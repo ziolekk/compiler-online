@@ -13,12 +13,11 @@ public class CppCompiler implements Compiler {
     private ProgramResults programResults;
     private ProgramExuctor programExuctor;
 
-    private final String pathToFile = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
-    private final String fileName = "code.cpp";
-    private final String compileFileName = "program";
-    private final String cleanUpCommand = "rm";
-    private final String compileCommand1 = "g++";
-    private final String compileCommand2 = "-o";
+    private final String PATH_TO_FOLDER = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
+    private final String FILE_NAME = "code.cpp";
+    private final String COMPILE_FILE_NAME = "program";
+    private final String CLEANUP_COMMAND = "rm";
+    private final String COMPILE_COMMAND = "g++ " + PATH_TO_FOLDER + FILE_NAME + " -o " + PATH_TO_FOLDER + COMPILE_FILE_NAME;
 
     private CppCompiler() {
         programExuctor = ProgramExuctor.getInstance();
@@ -47,8 +46,7 @@ public class CppCompiler implements Compiler {
     }
 
     private void createFile() throws IOException {
-        String absoluteFilePath = this.pathToFile + this.fileName;
-        File file = new File(absoluteFilePath);
+        File file = new File(PATH_TO_FOLDER + FILE_NAME);
 
         if (file.createNewFile()) {
             System.out.println("CppCompiler: createFile() ok");
@@ -58,20 +56,14 @@ public class CppCompiler implements Compiler {
     }
 
     private void saveCodeToFile(String code) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(this.pathToFile + this.fileName));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(PATH_TO_FOLDER + FILE_NAME));
         writer.write(code);
         writer.close();
     }
 
     private boolean compileProgram() throws IOException, InterruptedException {
         StringBuffer output = new StringBuffer();
-        System.out.println("Execute command: " + this.compileCommand1 + " " + this.pathToFile + this.fileName
-                + " " +  this.compileCommand2 + " " + this.pathToFile + this.compileFileName
-        );
-        Process process = Runtime.getRuntime().exec(
-                this.compileCommand1 + " " + this.pathToFile + this.fileName
-                + " " +  this.compileCommand2 + " " + this.pathToFile + this.compileFileName
-        );
+        Process process = Runtime.getRuntime().exec(COMPILE_COMMAND);
         process.waitFor();
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
@@ -86,18 +78,16 @@ public class CppCompiler implements Compiler {
     private void executeSingleTest(Program program) throws IOException, InterruptedException {
         SingleTestResult singleTestResult;
         for (String input : program.getTests()) {
-            singleTestResult = programExuctor.execute(input, pathToFile + compileFileName);
+            singleTestResult = programExuctor.execute(input);
             programResults.addTestResults(singleTestResult.getResult(), singleTestResult.getResultStatus());
         }
     }
 
     private void cleanUp() throws IOException, InterruptedException {
         Process process;
-        System.out.println("Exec command: " + this.cleanUpCommand + " " + this.pathToFile + this.fileName);
-        process = Runtime.getRuntime().exec(this.cleanUpCommand + " " + this.pathToFile + this.fileName);
+        process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + PATH_TO_FOLDER + FILE_NAME);
         process.waitFor();
-        System.out.println("Exec command: " + this.cleanUpCommand + " " + this.pathToFile + this.compileFileName);
-        process = Runtime.getRuntime().exec(this.cleanUpCommand + " " + this.pathToFile + this.compileFileName);
+        process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + this.PATH_TO_FOLDER + this.COMPILE_FILE_NAME);
         process.waitFor();
     }
 }

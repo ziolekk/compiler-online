@@ -18,10 +18,10 @@ public class ProgramExuctor {
         return instance;
     }
 
-    public SingleTestResult execute(String input, String programFilePath) throws IOException, InterruptedException {
+    public SingleTestResult execute(String input) throws IOException, InterruptedException {
         createTestFile();
         saveToFile(input);
-        SingleTestResult singleTestResult = getResult(programFilePath);
+        SingleTestResult singleTestResult = getResult();
         cleanUp();
         return singleTestResult;
     }
@@ -37,7 +37,7 @@ public class ProgramExuctor {
         writer.close();
     }
 
-    private SingleTestResult getResult(String programFilePath) {
+    private SingleTestResult getResult() {
         StringBuffer output = new StringBuffer();
 
         try {
