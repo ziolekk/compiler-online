@@ -52,10 +52,14 @@ public class ProgramExuctor {
             while ((line = reader.readLine()) != null)
                 output.append(line);
 
+        } catch (TimeoutException e) {
+            return new SingleTestResult("", ResultStatus.TIMEEXCEPTION);
         } catch (OutOfMemoryError e) {
             System.out.println(e.getMessage());
+            return new SingleTestResult("", ResultStatus.ERROR);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return new SingleTestResult("", ResultStatus.ERROR);
         }
 
         return new SingleTestResult(output.toString(), ResultStatus.OK);
