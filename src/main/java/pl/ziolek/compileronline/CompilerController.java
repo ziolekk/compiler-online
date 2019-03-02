@@ -20,6 +20,6 @@ public class CompilerController {
     public ResponseEntity<String> getResultsFromProgram(@RequestBody Program program) {
         ProgramResults programResults = cppCompiler.compile(program);
         System.out.println("CompilerController: ProgramResults: " + programResults.toString());
-        return new ResponseEntity<>(programResults.toString(), HttpStatus.OK);
+        return new ResponseEntity<>(programResults.toJSON(), HttpStatus.OK);
     }
 }
