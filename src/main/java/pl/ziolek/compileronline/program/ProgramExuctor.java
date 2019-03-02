@@ -104,6 +104,23 @@ public class ProgramExuctor {
         return s[s.length-1];
     }
 
+    private String getProcessPID(String line) {
+        String[] s = line.split(" ");
+
+        return s[0];
+    }
+
+    private void killProcess(String processPID) {
+        try {
+
+            Process process = Runtime.getRuntime().exec("kill " + processPID);
+            process.waitFor();
+
+        } catch (Exception e) {
+            System.out.println("killProcess error: " + e.getMessage());
+        }
+    }
+
     private void cleanUp() throws IOException, InterruptedException{
         Process process = Runtime.getRuntime().exec(CLEAN_UP_METHOD);
         process.waitFor();
