@@ -25,8 +25,7 @@ public class ProgramResults {
         this.testStatus.add(resultStatus);
     }
 
-    @Override
-    public java.lang.String toString() {
+    public java.lang.String toJSON() {
         StringBuilder stringBuilder = new StringBuilder();
 
 
