@@ -62,15 +62,11 @@ public class CppCompiler implements Compiler {
     }
 
     private boolean compileProgram() throws IOException, InterruptedException {
-        StringBuffer output = new StringBuffer();
         Process process = Runtime.getRuntime().exec(COMPILE_COMMAND);
         process.waitFor();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String line;
-        while ((line = reader.readLine()) != null)
-            output.append(line);
 
-        if (output.toString().equals(""))
+        File programFile = new File(PATH_TO_FOLDER + COMPILE_FILE_NAME);
+        if (programFile.exists())
             return true;
         return false;
     }
