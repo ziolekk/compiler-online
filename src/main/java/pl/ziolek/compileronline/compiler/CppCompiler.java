@@ -24,7 +24,7 @@ public class CppCompiler implements Compiler {
     }
 
     @Override
-    public ProgramResults compile(Program program) {
+    public synchronized ProgramResults compile(Program program) {
         programResults = new ProgramResults(program.getId());
 
         try {

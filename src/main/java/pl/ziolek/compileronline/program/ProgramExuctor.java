@@ -68,6 +68,7 @@ public class ProgramExuctor {
     private void checkExecTime(int limitInSeconds) throws TimeoutException {
         int i = 0;
         boolean programWorks;
+        String processPID = null;
         do {
             programWorks = false;
             try {
@@ -76,8 +77,10 @@ public class ProgramExuctor {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    if (getProcessName(line).equals(PATH_TO_FOLDER + "program"))
+                    if (getProcessName(line).equals(PATH_TO_FOLDER + "program")) {
+                        processPID = getProcessPID(line);
                         programWorks = true;
+                    }
                 }
 
                 if (!programWorks)
@@ -90,6 +93,8 @@ public class ProgramExuctor {
             i++;
         } while (i < limitInSeconds && programWorks);
 
+        if (processPID != null)
+            killProcess(processPID);
         throw new TimeoutException();
     }
 
@@ -97,6 +102,23 @@ public class ProgramExuctor {
         String[] s = line.split(" ");
 
         return s[s.length-1];
+    }
+
+    private String getProcessPID(String line) {
+        String[] s = line.split(" ");
+
+        return s[0];
+    }
+
+    private void killProcess(String processPID) {
+        try {
+
+            Process process = Runtime.getRuntime().exec("kill " + processPID);
+            process.waitFor();
+
+        } catch (Exception e) {
+            System.out.println("killProcess error: " + e.getMessage());
+        }
     }
 
     private void cleanUp() throws IOException, InterruptedException{
