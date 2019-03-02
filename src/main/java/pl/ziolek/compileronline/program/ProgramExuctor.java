@@ -45,7 +45,7 @@ public class ProgramExuctor {
             System.out.println(EXECUTE_METHOD);
             Process process = Runtime.getRuntime().exec(EXECUTE_METHOD);
 
-            checkExecTime(20);
+            checkExecTime(5);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
@@ -69,16 +69,15 @@ public class ProgramExuctor {
         int i = 0;
         boolean programWorks;
         do {
-            programWorks = true;
+            programWorks = false;
             try {
-                StringBuffer output = new StringBuffer();
                 Process process = Runtime.getRuntime().exec("ps -x");
                 process.waitFor();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    if (getProcessName(line).equals(EXECUTE_METHOD))
-                        programWorks = false;
+                    if (getProcessName(line).equals(PATH_TO_FOLDER + "program"))
+                        programWorks = true;
                 }
 
                 if (!programWorks)
