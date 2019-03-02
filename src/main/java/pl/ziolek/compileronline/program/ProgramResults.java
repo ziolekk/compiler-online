@@ -28,17 +28,33 @@ public class ProgramResults {
     @Override
     public java.lang.String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+
+
         stringBuilder.append("{ \"id\": ");
         stringBuilder.append(this.id);
+
+
         stringBuilder.append(", \"isGoodCompilation\": ");
         stringBuilder.append(this.isGoodCompilation);
-        stringBuilder.append(", \"testResults\": [ ");
-        for (String e : testResults)
-            stringBuilder.append(e + ", ");
-        stringBuilder.append("], \"testStatus\": [");
-        for (ResultStatus e : testStatus)
-            stringBuilder.append(e + " , ");
-        stringBuilder.append("]");
+
+
+        stringBuilder.append(", \"testResults\": [");
+        if (!testResults.isEmpty()) {
+            stringBuilder.append("\"" + testResults.get(0) + "\"");
+            for (int i = 1; i < testResults.size(); i++)
+                stringBuilder.append(", \"" + testResults.get(i) + "\"");
+        }
+        stringBuilder.append("], ");
+
+        stringBuilder.append("\"testStatus\": [");
+        if (!testStatus.isEmpty()) {
+            stringBuilder.append("\"" + testStatus.get(0) + "\"");
+            for (int i = 1; i < testStatus.size(); i++)
+                stringBuilder.append(", \"" + testStatus.get(i) + "\"");
+        }
+        stringBuilder.append("] }");
+
+
         return stringBuilder.toString();
     }
 }
