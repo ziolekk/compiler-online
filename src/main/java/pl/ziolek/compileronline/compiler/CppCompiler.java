@@ -30,7 +30,12 @@ public class CppCompiler implements Compiler {
         try {
             createFile();
             saveCodeToFile(program.getCode());
-            programResults.setGoodCompilation(compileProgram());
+            if (compileProgram())
+                programResults.setGoodCompilation(true);
+            else {
+                programResults.setGoodCompilation(false);
+                return programResults;
+            }
             executeSingleTest(program);
             cleanUp();
         } catch (Exception e) {
