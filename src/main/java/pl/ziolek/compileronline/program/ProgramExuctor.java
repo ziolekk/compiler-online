@@ -1,6 +1,7 @@
 package pl.ziolek.compileronline.program;
 
 import java.io.*;
+import java.util.concurrent.TimeoutException;
 
 public class ProgramExuctor {
 
@@ -43,22 +44,59 @@ public class ProgramExuctor {
         try {
             System.out.println(EXECUTE_METHOD);
             Process process = Runtime.getRuntime().exec(EXECUTE_METHOD);
-            process.waitFor();
-//            Sprawdzanie czasu wykonania programu
-//            while z boolean checkRuntime i odliczaniem do x sekund
+
+            checkExecTime(5);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null)
                 output.append(line);
 
+        } catch (TimeoutException e) {
+            return new SingleTestResult("", ResultStatus.TIMEEXCEPTION);
         } catch (OutOfMemoryError e) {
             System.out.println(e.getMessage());
+            return new SingleTestResult("", ResultStatus.ERROR);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return new SingleTestResult("", ResultStatus.ERROR);
         }
 
         return new SingleTestResult(output.toString(), ResultStatus.OK);
+    }
+
+    private void checkExecTime(int limitInSeconds) throws TimeoutException {
+        int i = 0;
+        boolean programWorks;
+        do {
+            programWorks = false;
+            try {
+                Process process = Runtime.getRuntime().exec("ps -x");
+                process.waitFor();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (getProcessName(line).equals(PATH_TO_FOLDER + "program"))
+                        programWorks = true;
+                }
+
+                if (!programWorks)
+                    return;
+
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                System.out.println("checkExecTime: error = " + e.getMessage());
+            }
+            i++;
+        } while (i < limitInSeconds && programWorks);
+
+        throw new TimeoutException();
+    }
+
+    private String getProcessName(String line) {
+        String[] s = line.split(" ");
+
+        return s[s.length-1];
     }
 
     private void cleanUp() throws IOException, InterruptedException{
