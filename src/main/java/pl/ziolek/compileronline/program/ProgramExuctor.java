@@ -99,12 +99,14 @@ public class ProgramExuctor {
     }
 
     private String getProcessName(String line) {
+        line = line.trim();
         String[] s = line.split(" ");
 
         return s[s.length-1];
     }
 
     private String getProcessPID(String line) {
+        line = line.trim();
         String[] s = line.split(" ");
 
         return s[0];
