@@ -27,4 +27,8 @@ public class Program {
     public List<String> getTests() {
         return tests;
     }
+
+    public List<Integer> getMaxExecutionTimeForTestInSeconds() {
+        return maxExecutionTimeForTestInSeconds;
+    }
 }
