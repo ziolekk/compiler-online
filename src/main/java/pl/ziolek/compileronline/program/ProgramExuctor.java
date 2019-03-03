@@ -19,10 +19,10 @@ public class ProgramExuctor {
         return instance;
     }
 
-    public SingleTestResult execute(String input) throws IOException, InterruptedException {
+    public SingleTestResult execute(String input, Integer maxExecutionTimeInSeconds) throws IOException, InterruptedException {
         createTestFile();
         saveToFile(input);
-        SingleTestResult singleTestResult = getResult();
+        SingleTestResult singleTestResult = getResult(maxExecutionTimeInSeconds);
         cleanUp();
         return singleTestResult;
     }
@@ -38,14 +38,14 @@ public class ProgramExuctor {
         writer.close();
     }
 
-    private SingleTestResult getResult() {
+    private SingleTestResult getResult(int timeLimit) {
         StringBuffer output = new StringBuffer();
 
         try {
             System.out.println(EXECUTE_METHOD);
             Process process = Runtime.getRuntime().exec(EXECUTE_METHOD);
 
-            checkExecTime(5);
+            checkExecTime(timeLimit);
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
