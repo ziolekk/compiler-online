@@ -6,6 +6,7 @@ import pl.ziolek.compileronline.program.ProgramResults;
 import pl.ziolek.compileronline.program.SingleTestResult;
 
 import java.io.*;
+import java.util.List;
 
 public class CppCompiler implements Compiler {
 
@@ -78,10 +79,13 @@ public class CppCompiler implements Compiler {
 
     private void executeSingleTest(Program program) throws IOException, InterruptedException {
         SingleTestResult singleTestResult;
-        for (String input : program.getTests()) {
-            singleTestResult = programExuctor.execute(input);
+        List<String> tests = program.getTests();
+        List<Integer> maxExecutionTimeInSeconds = program.getMaxExecutionTimeForTestInSeconds();
+        for (int i = 0; i < tests.size(); i++) {
+            singleTestResult = programExuctor.execute(tests.get(i), maxExecutionTimeInSeconds.get(i));
             programResults.addTestResults(singleTestResult.getResult(), singleTestResult.getResultStatus());
         }
+
     }
 
     private void cleanUp() throws IOException, InterruptedException {
