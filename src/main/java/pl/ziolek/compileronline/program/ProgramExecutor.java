@@ -3,9 +3,9 @@ package pl.ziolek.compileronline.program;
 import java.io.*;
 import java.util.concurrent.TimeoutException;
 
-public class ProgramExuctor {
+public class ProgramExecutor {
 
-    private static ProgramExuctor instance = new ProgramExuctor();
+    private static ProgramExecutor instance = new ProgramExecutor();
 
     private final String PATH_TO_FOLDER = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String TEST_FILE_NAME = "input.in";
@@ -13,9 +13,9 @@ public class ProgramExuctor {
     private final String EXECUTE_METHOD = PATH_TO_FOLDER + "runProgram.sh";
     private final String CLEAN_UP_METHOD = "rm " + PATH_TO_FOLDER + TEST_FILE_NAME;
 
-    private ProgramExuctor() {}
+    private ProgramExecutor() {}
 
-    public static ProgramExuctor getInstance() {
+    public static ProgramExecutor getInstance() {
         return instance;
     }
 

@@ -15,6 +15,42 @@
 	<name>CompilerOnline</name>
 	<description>Compiler with REST API to execute c++ and python code</description>
 
+	<profiles>
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+
+			</properties>
+			<build>
+				<finalName>compileronlinelocal</finalName>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+
+			</properties>
+			<build>
+				<finalName>compileronlinedev</finalName>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

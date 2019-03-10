@@ -1,7 +1,7 @@
 package pl.ziolek.compileronline.compiler;
 
 import pl.ziolek.compileronline.program.Program;
-import pl.ziolek.compileronline.program.ProgramExuctor;
+import pl.ziolek.compileronline.program.ProgramExecutor;
 import pl.ziolek.compileronline.program.ProgramResults;
 import pl.ziolek.compileronline.program.SingleTestResult;
 
@@ -12,7 +12,7 @@ public class CppCompiler implements Compiler {
 
     private static CppCompiler instance = new CppCompiler();
     private ProgramResults programResults;
-    private ProgramExuctor programExuctor;
+    private ProgramExecutor programExecutor;
 
     private final String PATH_TO_FOLDER = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String FILE_NAME = "code.cpp";
@@ -21,7 +21,7 @@ public class CppCompiler implements Compiler {
     private final String COMPILE_COMMAND = "g++ " + PATH_TO_FOLDER + FILE_NAME + " -o " + PATH_TO_FOLDER + COMPILE_FILE_NAME;
 
     private CppCompiler() {
-        programExuctor = ProgramExuctor.getInstance();
+        programExecutor = ProgramExecutor.getInstance();
     }
 
     @Override
@@ -82,7 +82,7 @@ public class CppCompiler implements Compiler {
         List<String> tests = program.getTests();
         List<Integer> maxExecutionTimeInSeconds = program.getMaxExecutionTimeForTestInSeconds();
         for (int i = 0; i < tests.size(); i++) {
-            singleTestResult = programExuctor.execute(tests.get(i), maxExecutionTimeInSeconds.get(i));
+            singleTestResult = programExecutor.execute(tests.get(i), maxExecutionTimeInSeconds.get(i));
             programResults.addTestResults(singleTestResult.getResult(), singleTestResult.getResultStatus());
         }
 
