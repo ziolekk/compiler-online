@@ -14,7 +14,7 @@ public class CppCompiler implements Compiler {
     private ProgramResults programResults;
     private ProgramExecutor programExecutor;
 
-    private final String PATH_TO_FOLDER = "/usr/local/tomcat/compilations/cpp_compilations/";
+    private final String PATH_TO_FOLDER = "/compilations/cpp_compilations";
     private final String FILE_NAME = "code.cpp";
     private final String COMPILE_FILE_NAME = "program";
     private final String CLEANUP_COMMAND = "rm";

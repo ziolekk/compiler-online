@@ -7,7 +7,7 @@ public class ProgramExecutor {
 
     private static ProgramExecutor instance = new ProgramExecutor();
 
-    private final String PATH_TO_FOLDER = "/usr/local/tomcat/compilations/cpp_compilations/";
+    private final String PATH_TO_FOLDER = "/compilations/cpp_compilations";
     private final String TEST_FILE_NAME = "input.in";
     private final String ABSOLUTE_PATH_TO_FILE = PATH_TO_FOLDER + TEST_FILE_NAME;
     private final String EXECUTE_METHOD = PATH_TO_FOLDER + "runProgram.sh";
