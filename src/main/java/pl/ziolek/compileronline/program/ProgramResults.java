@@ -7,22 +7,22 @@ public class ProgramResults {
 
     private int id;
     private boolean isGoodCompilation;
-    private List<String> testResults;
-    private List<ResultStatus> testStatus;
+    private List<String> outputs;
+    private List<ResultStatus> outputsStatus;
 
     public ProgramResults(int id) {
         this.id = id;
-        this.testResults = new ArrayList<>();
-        this.testStatus = new ArrayList<>();
+        this.outputs = new ArrayList<>();
+        this.outputsStatus = new ArrayList<>();
     }
 
     public void setGoodCompilation(boolean isGoodCompilation) {
         this.isGoodCompilation = isGoodCompilation;
     }
 
-    public void addTestResults(String testResult, ResultStatus resultStatus) {
-        this.testResults.add(testResult);
-        this.testStatus.add(resultStatus);
+    public void addResultsToOutput(String testResult, ResultStatus resultStatus) {
+        this.outputs.add(testResult);
+        this.outputsStatus.add(resultStatus);
     }
 
     public java.lang.String toJSON() {
@@ -37,19 +37,19 @@ public class ProgramResults {
         stringBuilder.append(this.isGoodCompilation);
 
 
-        stringBuilder.append(", \"testResults\": [");
-        if (!testResults.isEmpty()) {
-            stringBuilder.append("\"" + testResults.get(0) + "\"");
-            for (int i = 1; i < testResults.size(); i++)
-                stringBuilder.append(", \"" + testResults.get(i) + "\"");
+        stringBuilder.append(", \"outputs\": [");
+        if (!outputs.isEmpty()) {
+            stringBuilder.append("\"" + outputs.get(0) + "\"");
+            for (int i = 1; i < outputs.size(); i++)
+                stringBuilder.append(", \"" + outputs.get(i) + "\"");
         }
         stringBuilder.append("], ");
 
-        stringBuilder.append("\"testStatus\": [");
-        if (!testStatus.isEmpty()) {
-            stringBuilder.append("\"" + testStatus.get(0) + "\"");
-            for (int i = 1; i < testStatus.size(); i++)
-                stringBuilder.append(", \"" + testStatus.get(i) + "\"");
+        stringBuilder.append("\"outputsStatus\": [");
+        if (!outputsStatus.isEmpty()) {
+            stringBuilder.append("\"" + outputsStatus.get(0) + "\"");
+            for (int i = 1; i < outputsStatus.size(); i++)
+                stringBuilder.append(", \"" + outputsStatus.get(i) + "\"");
         }
         stringBuilder.append("] }");
 

@@ -3,7 +3,7 @@ package pl.ziolek.compileronline.compiler;
 import pl.ziolek.compileronline.program.Program;
 import pl.ziolek.compileronline.program.ProgramExecutor;
 import pl.ziolek.compileronline.program.ProgramResults;
-import pl.ziolek.compileronline.program.SingleTestResult;
+import pl.ziolek.compileronline.program.SingleOutput;
 
 import java.io.*;
 import java.util.List;
@@ -80,12 +80,12 @@ public class CppCompiler implements Compiler {
     }
 
     private void executeSingleTest(Program program) throws IOException, InterruptedException {
-        SingleTestResult singleTestResult;
-        List<String> tests = program.getTests();
+        SingleOutput singleOutput;
+        List<String> inputs = program.getInputs();
         List<Integer> maxExecutionTimeInSeconds = program.getMaxExecutionTimeForTestInSeconds();
-        for (int i = 0; i < tests.size(); i++) {
-            singleTestResult = programExecutor.execute(tests.get(i), maxExecutionTimeInSeconds.get(i));
-            programResults.addTestResults(singleTestResult.getResult(), singleTestResult.getResultStatus());
+        for (int i = 0; i < inputs.size(); i++) {
+            singleOutput = programExecutor.execute(inputs.get(i), maxExecutionTimeInSeconds.get(i));
+            programResults.addResultsToOutput(singleOutput.getResult(), singleOutput.getResultStatus());
         }
 
     }

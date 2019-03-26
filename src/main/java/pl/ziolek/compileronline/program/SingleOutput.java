@@ -1,11 +1,11 @@
 package pl.ziolek.compileronline.program;
 
-public class SingleTestResult {
+public class SingleOutput {
 
     private String result;
     private ResultStatus resultStatus;
 
-    public SingleTestResult(String result, ResultStatus resultStatus) {
+    public SingleOutput(String result, ResultStatus resultStatus) {
         this.result = result;
         this.resultStatus = resultStatus;
     }

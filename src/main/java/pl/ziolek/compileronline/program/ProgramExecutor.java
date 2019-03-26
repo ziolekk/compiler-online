@@ -20,12 +20,11 @@ public class ProgramExecutor {
         return instance;
     }
 
-    public SingleTestResult execute(String input, Integer maxExecutionTimeInSeconds) throws IOException, InterruptedException {
+    public SingleOutput execute(String input, Integer maxExecutionTimeInSeconds) throws IOException, InterruptedException {
         createTestFile();
         saveToFile(input);
-        SingleTestResult singleTestResult = getResult(maxExecutionTimeInSeconds);
+        return getResult(maxExecutionTimeInSeconds);
 
-        return singleTestResult;
     }
 
     private void createTestFile() throws IOException {
@@ -39,7 +38,7 @@ public class ProgramExecutor {
         writer.close();
     }
 
-    private SingleTestResult getResult(int timeLimit) {
+    private SingleOutput getResult(int timeLimit) {
         StringBuffer output = new StringBuffer();
 
         try {
@@ -54,18 +53,18 @@ public class ProgramExecutor {
                 output.append(line);
 
         } catch (TimeoutException e) {
-            return new SingleTestResult("", ResultStatus.TIMEEXCEPTION);
+            return new SingleOutput("", ResultStatus.TIMEEXCEPTION);
         } catch (OutOfMemoryError e) {
             System.out.println(e.getMessage());
-            return new SingleTestResult("", ResultStatus.ERROR);
+            return new SingleOutput("", ResultStatus.ERROR);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return new SingleTestResult("", ResultStatus.ERROR);
+            return new SingleOutput("", ResultStatus.ERROR);
         } finally {
             cleanUp();
         }
 
-        return new SingleTestResult(output.toString(), ResultStatus.OK);
+        return new SingleOutput(output.toString(), ResultStatus.OK);
     }
 
     private void checkExecTime(int limitInSeconds) throws TimeoutException {
