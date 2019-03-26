@@ -7,7 +7,6 @@ import pl.ziolek.compileronline.compiler.CppCompiler;
 import pl.ziolek.compileronline.program.Program;
 import pl.ziolek.compileronline.program.ProgramResults;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "/")
 public class CompilerController {
