@@ -41,7 +41,7 @@ public class CppCompiler implements Compiler {
             executeSingleTest(program);
             cleanUp();
         } catch (Exception e) {
-
+            cleanUp();
             System.out.println(e.getMessage());
         }
 
@@ -89,11 +89,15 @@ public class CppCompiler implements Compiler {
 
     }
 
-    private void cleanUp() throws IOException, InterruptedException {
-        Process process;
-        process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + PATH_TO_FOLDER + FILE_NAME);
-        process.waitFor();
-        process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + this.PATH_TO_FOLDER + this.COMPILE_FILE_NAME);
-        process.waitFor();
+    private void cleanUp() {
+        try {
+            Process process;
+            process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + PATH_TO_FOLDER + FILE_NAME);
+            process.waitFor();
+            process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + this.PATH_TO_FOLDER + this.COMPILE_FILE_NAME);
+            process.waitFor();
+        } catch (Exception e) {
+            System.out.println("cleanUp method error: " + e.getMessage());
+        }
     }
 }
