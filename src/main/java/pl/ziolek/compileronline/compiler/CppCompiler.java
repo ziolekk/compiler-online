@@ -14,6 +14,7 @@ public class CppCompiler implements Compiler {
     private ProgramResults programResults;
     private ProgramExecutor programExecutor;
 
+//    private final String PATH_TO_FOLDER = "/compilations/cpp_compilations/";
     private final String PATH_TO_FOLDER = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String FILE_NAME = "code.cpp";
     private final String COMPILE_FILE_NAME = "program";
@@ -38,10 +39,11 @@ public class CppCompiler implements Compiler {
                 return programResults;
             }
             executeSingleTest(program);
-            cleanUp();
-        } catch (Exception e) {
 
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            cleanUp();
         }
 
         return programResults;
@@ -88,11 +90,15 @@ public class CppCompiler implements Compiler {
 
     }
 
-    private void cleanUp() throws IOException, InterruptedException {
-        Process process;
-        process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + PATH_TO_FOLDER + FILE_NAME);
-        process.waitFor();
-        process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + this.PATH_TO_FOLDER + this.COMPILE_FILE_NAME);
-        process.waitFor();
+    private void cleanUp() {
+        try {
+            Process process;
+            process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + PATH_TO_FOLDER + FILE_NAME);
+            process.waitFor();
+            process = Runtime.getRuntime().exec(CLEANUP_COMMAND + " " + this.PATH_TO_FOLDER + this.COMPILE_FILE_NAME);
+            process.waitFor();
+        } catch (Exception e) {
+            System.out.println("cleanUp method error: " + e.getMessage());
+        }
     }
 }

@@ -7,6 +7,7 @@ public class ProgramExecutor {
 
     private static ProgramExecutor instance = new ProgramExecutor();
 
+//    private final String PATH_TO_FOLDER = "/compilations/cpp_compilations/";
     private final String PATH_TO_FOLDER = "/home/ziolek/Projects/IdeaProjects/CompilerOnline/cpp_compilations/";
     private final String TEST_FILE_NAME = "input.in";
     private final String ABSOLUTE_PATH_TO_FILE = PATH_TO_FOLDER + TEST_FILE_NAME;
@@ -23,7 +24,7 @@ public class ProgramExecutor {
         createTestFile();
         saveToFile(input);
         SingleTestResult singleTestResult = getResult(maxExecutionTimeInSeconds);
-        cleanUp();
+
         return singleTestResult;
     }
 
@@ -60,6 +61,8 @@ public class ProgramExecutor {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new SingleTestResult("", ResultStatus.ERROR);
+        } finally {
+            cleanUp();
         }
 
         return new SingleTestResult(output.toString(), ResultStatus.OK);
@@ -123,8 +126,12 @@ public class ProgramExecutor {
         }
     }
 
-    private void cleanUp() throws IOException, InterruptedException{
-        Process process = Runtime.getRuntime().exec(CLEAN_UP_METHOD);
-        process.waitFor();
+    private void cleanUp() {
+        try {
+            Process process = Runtime.getRuntime().exec(CLEAN_UP_METHOD);
+            process.waitFor();
+        } catch (Exception e) {
+            System.out.println("cleanUp method error: " + e.getMessage());
+        }
     }
 }
