@@ -39,10 +39,11 @@ public class CppCompiler implements Compiler {
                 return programResults;
             }
             executeSingleTest(program);
-            cleanUp();
+
         } catch (Exception e) {
-            cleanUp();
             System.out.println(e.getMessage());
+        } finally {
+            cleanUp();
         }
 
         return programResults;

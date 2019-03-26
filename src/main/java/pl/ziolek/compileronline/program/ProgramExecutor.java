@@ -24,7 +24,7 @@ public class ProgramExecutor {
         createTestFile();
         saveToFile(input);
         SingleTestResult singleTestResult = getResult(maxExecutionTimeInSeconds);
-        cleanUp();
+
         return singleTestResult;
     }
 
@@ -61,6 +61,8 @@ public class ProgramExecutor {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new SingleTestResult("", ResultStatus.ERROR);
+        } finally {
+            cleanUp();
         }
 
         return new SingleTestResult(output.toString(), ResultStatus.OK);
@@ -124,8 +126,12 @@ public class ProgramExecutor {
         }
     }
 
-    private void cleanUp() throws IOException, InterruptedException{
-        Process process = Runtime.getRuntime().exec(CLEAN_UP_METHOD);
-        process.waitFor();
+    private void cleanUp() {
+        try {
+            Process process = Runtime.getRuntime().exec(CLEAN_UP_METHOD);
+            process.waitFor();
+        } catch (Exception e) {
+            System.out.println("cleanUp method error: " + e.getMessage());
+        }
     }
 }
