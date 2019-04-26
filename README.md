@@ -40,7 +40,7 @@ gdzie:
     code - nasz kod do skompilowania jako ciąg znaków
     inputs - tablica typu string na dane wejściowe, program zostanie odpalony dla
         każdego elementu tablicy osobno i zwórci ich wynik)
-    maxExecutionTimeForTestInSeconds - maksymalny czas (w sekundach) wykonania dla każdego      programu
+    maxExecutionTimeForTestInSeconds - maksymalny czas (w sekundach) wykonania dla każdego programu
 ```
 W odopowiedzi serwe zwórci JSON:
 ```
