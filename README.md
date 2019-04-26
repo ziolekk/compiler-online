@@ -34,14 +34,14 @@ Aby wykonać program trzeba wysłać na adres http://localhost:8888/co/compile n
 "inputs": [ ],
 "maxExecutionTimeForTestInSeconds": [ ]
 }
-```
+
 gdzie:
     id - aktualnie może być obojętne
     code - nasz kod do skompilowania jako ciąg znaków
     inputs - tablica typu string na dane wejściowe, program zostanie odpalony dla
         każdego elementu tablicy osobno i zwórci ich wynik)
     maxExecutionTimeForTestInSeconds - maksymalny czas (w sekundach) wykonania dla każdego            programu
-
+```
 W odopowiedzi serwe zwórci JSON:
 ```
 {
@@ -50,7 +50,7 @@ W odopowiedzi serwe zwórci JSON:
 "outputs": [],
 "outputsStatus": []
 }
-```
+
 gdzie:
     isGoodCompilation - pokazuje czy udało się skompilować program
     outputs - tablica z danymi wyjściowymi, i-ty wynik odpowiada i-tej pozycji w tablicy inputs
@@ -58,3 +58,4 @@ gdzie:
         - OK - kompilacja bez problemu
         - TIMEEXCEPTION - przekroczono limit czasu
         - ERROR - błąd w trakcie wykonywania kodu
+```
